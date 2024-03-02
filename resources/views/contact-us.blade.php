@@ -75,9 +75,9 @@
               <!-- contact form -->
               <div class="col-xxl-8 col-lg-7">
                   <div class="rv-2-contact__txt rv-inner-contact__txt">
-                      <h3 class="rv-2-contact-form-title">Let's Connect.</h3>
                       @include('admin.includes.alert-message')
-                      <form action="{{ route('contact-us-send') }}" class="rv-2-contact__form rv-inner-contact__form">
+                      <h3 class="rv-2-contact-form-title">Let's Connect.</h3>
+                      <form action="{{ route('contact-us-send') }}" class="rv-2-contact__form rv-inner-contact__form" method="POST">
                         @csrf
                           <div class="row">
                               <div class="col-sm-6">

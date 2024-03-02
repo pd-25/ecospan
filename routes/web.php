@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::get('contact-us', [HomeController::class, 'contactUs'])->name('contact-us
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('product/{productId}', [HomeController::class, 'productDetail'])->name('product-detail');
-Route::post('/contact-us', 'ContactusController@send')->name('contact-us-send');
+Route::post('contact-us', [ContactusController::class, 'send'])->name('contact-us-send');
 
 Route::namespace('App\\Http\\Controllers\\Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::get('login', 'AuthController@index')->name('login');

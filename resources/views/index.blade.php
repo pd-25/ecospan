@@ -94,7 +94,7 @@
     </div>
 
     <!--<span class="service-sh-1"><img src="assets/img/services/home-6-service-4.png" alt="image"></span>-->
-    <span class="service-sh-2"><img src="{{ asset('assets/img/services/home-6-service-5.png') }}" alt="image"></span>
+    {{-- <span class="service-sh-2"><img src="{{ asset('assets/img/services/home-6-service-5.png') }}" alt="image"></span> --}}
 </section>
 <!-- END INDEX-20 SERVICE SECTION -->
 
@@ -438,7 +438,8 @@
                         <h2 class="rv-20-contact_section_title rv-text-anime">Seeking a Home Gardener? Reach Out To Us.</h2>
                     </div>
                     @include('admin.includes.alert-message')
-                    <form action="{{ route('contact-us-send') }}" class="rv-20-contact_form">
+                    <form action="{{ route('contact-us-send') }}" class="rv-20-contact_form" method="POST">
+                        @csrf
                         <div class="row rv-20-form_row">
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Full Name">

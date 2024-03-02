@@ -10,6 +10,8 @@ use Illuminate\Queue\SerializesModels;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $senderEmail;
     public $data;
 
     /**
@@ -17,8 +19,9 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($senderEmail, $data)
     {
+        $this->senderEmail = $senderEmail;
         $this->data = $data;
     }
 
@@ -29,6 +32,9 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('info@ecospan.in')->subject('New Enquiry')->view('email_template')->with('data',$this->data);
+        return $this->from($this->senderEmail)
+                    ->subject('New Enquiry')
+                    ->view('email_template')
+                    ->with('data', $this->data);
     }
 }

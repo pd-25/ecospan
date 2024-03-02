@@ -19,26 +19,17 @@ class ContactusController extends Controller
                 'message' => 'required|string',
             ]);
 
-            $data = array(
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'message' => $request->message,
-            );
+            $data = $request->only('name', 'email', 'phone', 'message');
 
-            try {
-                Mail::to(['info@ecospan.in', 'admin@ecospan.com'])->send(new SendMail($data));
+            Mail::to('admin@ecospan.com')->send(new SendMail($data['email'], $data));
 
-                session()->flash('alert-success', 'Thanks for Contacting Us!');
+            Mail::to($data['email'])->send(new SendMail($data['email'], $data));
 
-            } catch (Exception $e) {
-                session()->flash('alert-danger', $e->getMessage());
-            }
-
+            session()->flash('alert-success', 'Thanks for Contacting Us!');
         } catch (Exception $e) {
             session()->flash('alert-danger', $e->getMessage());
-
         }
+
         return back();
     }
 }
